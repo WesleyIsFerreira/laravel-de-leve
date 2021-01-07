@@ -3,6 +3,8 @@
 //use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\MeuControlador;
+use App\Http\Controllers\ClienteControlador;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +72,6 @@ Route::get('todosprodutos2', function() {
 
 ////////////////////////////////////////////
 
-
 Route::post('/insere', function(Request $request) {
     return "Inserido com sucesso";
 });
@@ -90,3 +91,12 @@ Route::get('/insere', function(Request $request) {
     return "getzada com sucesso";
 });
 
+//////////////////////////////////
+
+Route::get('produtos', [MeuControlador::class, 'produtos']);
+Route::get('nome', [MeuControlador::class, 'getNome']);
+Route::get('idade', [MeuControlador::class, 'getIdade']);
+Route::get('multiplicar/{n1}/{n2}', [MeuControlador::class, 'multiplicar']);
+
+
+Route::resource('clientes', ClienteControlador::class);
