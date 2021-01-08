@@ -30,7 +30,18 @@ class ClienteControlador extends Controller
     public function index()
     {
         $clientes = session('clientes');
-        return view('clientes.index', compact(['clientes']));
+
+
+        
+
+        /*
+        return view('clientes.index')
+            ->with('clientes', $clientes)
+            ->with('titulo', "Todos os clientes");
+        */
+        //Compact e essa linha abaixo tem o mesmo comportamento
+        return view('clientes.index', ['clientes' => $clientes, 'titulo' => "Todos os devedores"]);
+        //return view('clientes.index', compact(['clientes']));
     }
 
     /**
@@ -53,7 +64,14 @@ class ClienteControlador extends Controller
     {
         //$dados = $request->all();
         $clientes = session('clientes');
-        $id = end($clientes)['id'] + 1;
+        
+        
+        if (count($clientes) != 0){
+            $id = end($clientes)['id'] + 1;
+        }else{
+            $id = 1;
+        }
+        
         $nome = $request->nome;
         $dados = ["id"=>$id, "nome"=>$nome];
         $clientes[] = $dados;

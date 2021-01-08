@@ -93,10 +93,19 @@ Route::get('/insere', function(Request $request) {
 
 //////////////////////////////////
 
-Route::get('produtos', [MeuControlador::class, 'produtos']);
+Route::get('produtos', function() {
+    return view('outras.produtos');
+})->name('produtos');
+Route::get('departamentos', function() {
+    return view('outras.departamento');
+})->name('departamentos');
 Route::get('nome', [MeuControlador::class, 'getNome']);
 Route::get('idade', [MeuControlador::class, 'getIdade']);
 Route::get('multiplicar/{n1}/{n2}', [MeuControlador::class, 'multiplicar']);
 
-
 Route::resource('clientes', ClienteControlador::class);
+
+
+Route::get('opcoes/{opcao?}', function($opcao=null) {
+    return view('outras.opcoes', compact(['opcao']));
+})->name('opcoes');
