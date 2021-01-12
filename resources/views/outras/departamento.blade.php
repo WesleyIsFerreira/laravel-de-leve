@@ -35,4 +35,15 @@
     <p>Ocorreu um erro muio bugado do parada</p>
 @endcomponent
 
+@component('components.socorro', ['color'=>'blue'])
+    texto nota 10
+@endcomponent
+
+<x-socorro color='red'>
+    texto do slot
+</x-socorro>
+
+<x-animation>
+</x-animation>
+
 @endsection
